@@ -3,6 +3,7 @@ package com.github.lyrric.db;
 import com.github.lyrric.entity.Column;
 import com.github.lyrric.entity.Table;
 import com.github.lyrric.entity.config.DbConfig;
+import com.github.lyrric.util.ColumnToField;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
  * @version 1.0
  * @date 2021/4/9 14:25
  */
-public abstract class AbstractDatabase {
+public abstract class AbstractDatabase implements ColumnToField {
 
     DbConfig dbConfig;
     String tableNames;
@@ -53,4 +54,5 @@ public abstract class AbstractDatabase {
      * @return
      */
     abstract List<String> getAllTableNames();
+
 }

@@ -1,38 +1,35 @@
 package com.github.lyrric.test;
 
 
+import com.github.lyrric.MyBatisGenerator;
 import com.github.lyrric.db.AbstractDatabase;
 import com.github.lyrric.entity.Clazz;
 import com.github.lyrric.entity.Table;
 import com.github.lyrric.entity.config.DbConfig;
 import com.github.lyrric.db.MysqlDatabase;
 import com.github.lyrric.enums.Mysql2JavaType;
+import com.github.lyrric.util.MyProperties;
+import com.github.lyrric.util.PropertiesUtil;
 import com.github.lyrric.util.TableToClassUtil;
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
+import freemarker.template.TemplateExceptionHandler;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.sql.SQLException;
-import java.util.Date;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 public class GeneratorTest {
 
 
     @Test
-    public void test() throws IOException, SQLException {
-        Properties properties = new Properties();
-        InputStream is = getClass().getClassLoader().getResourceAsStream("generator.properties");
-        properties.load(is);
-        DbConfig dbConfig = new DbConfig(properties);
-        AbstractDatabase database = new MysqlDatabase(dbConfig, "comm_admin");
-        database.connect();
-        List<Table> tables = database.getTables();
-        System.out.println(tables);
-        List<Clazz> clazzList = new TableToClassUtil(tables, t -> Mysql2JavaType.getJavaType(t.getDbType())).getClazzList();
-        System.out.println();
+    public void test() throws IOException, SQLException, TemplateException {
+       new MyBatisGenerator().generate();
     }
+
+
 
     @Test
     public void enumTest(){

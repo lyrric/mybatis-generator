@@ -1,53 +1,57 @@
-package ${entityUrl};
+package ${generator.entityPackage};
+
+<#if mybatisPlus.enable>
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
-import com.fasterxml.jackson.annotation.JsonFormat;
+</#if>
+<#if swagger.enable>
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+</#if>
+<#if lombok.enable>
+    <#if lombok.data>
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
-import org.springframework.format.annotation.DateTimeFormat;
-import java.io.Serializable;
-import ${entityUrl}.entity;
-<#list pkgs as ps>
-	<#if ps??>
-import ${ps};
-	</#if>
+    </#if>
+    <#if lombok.noArgsConstructor>
+import lombok.AllArgsConstructor;
+    </#if>
+    <#if lombok.allArgsConstructor>
+import lombok.NoArgsConstructor;
+    </#if>
+    <#if lombok.builder>
+import lombok.Builder;
+    </#if>
+</#if>
+<#list clazz.dynamicImport as di>
+import ${di};
 </#list>
 
 /**
+* ${clazz.comment}
 * @author: mybatis-generator
 */
 @Data
-public class ${entityName} {
-	
-<#list cis as ci>
- <#if ci.javaType=="Date">
-  <#if ci.jdbcType=="date">
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
-  <#elseif ci.jdbcType=="time">
-    @DateTimeFormat(pattern = "HH:mm:ss")
-	@JsonFormat(pattern="HH:mm:ss",timezone = "GMT+8")
-  <#else>
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
-  </#if>
- </#if>
- <#if ci.property=="id">
-	@TableId(value = "id", type = IdType.AUTO)
- </#if>
- <#if isSwagger=="true" >
-	@ApiModelProperty(name = "${ci.property}" , value = "${ci.comment}")
- </#if>
-	private ${ci.javaType} ${ci.property};
-    
+<#if swagger.enable>
+@ApiModel("${clazz.comment}")
+</#if>
+public class ${clazz.name} {
+<#list clazz.fields as field>
+
+    <#if swagger.enable>
+    @ApiModelProperty(name = "${field.name}" , value = "${field.comment}")
+    <#else>
+    /**
+    * ${field.comment}
+    */
+    </#if>
+    <#if mybatisPlus.enable && field.primaryKey>
+    @TableId(value = "${field.name}", type = IdType.AUTO)
+    </#if>
+	private ${field.javaType} ${field.name};
 </#list>
 
-<#list cis as ci>
-    public static String ${ci.column?upper_case} = "${ci.column}";
+<#list clazz.fields as field>
+    public static final String ${field.columnName?upper_case} = "${field.columnName}";
 </#list>
-
-
 }
 	

@@ -3,6 +3,7 @@ package com.github.lyrric.db;
 import com.github.lyrric.entity.Column;
 import com.github.lyrric.entity.Table;
 import com.github.lyrric.entity.config.DbConfig;
+import com.github.lyrric.enums.Mysql2JavaType;
 import com.github.lyrric.exception.TableNotExistException;
 
 import java.sql.*;
@@ -110,5 +111,10 @@ public class MysqlDatabase extends AbstractDatabase{
             e.printStackTrace();
         }
         return tableNames;
+    }
+
+    @Override
+    public Class<?> convert(Column column) {
+        return Mysql2JavaType.getJavaType(column.getDbType());
     }
 }

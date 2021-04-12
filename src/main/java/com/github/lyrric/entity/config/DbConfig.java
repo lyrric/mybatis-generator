@@ -1,5 +1,6 @@
 package com.github.lyrric.entity.config;
 
+import com.github.lyrric.util.MyProperties;
 import lombok.Data;
 
 import java.util.Properties;
@@ -20,10 +21,10 @@ public class DbConfig {
 
     private String password;
 
-    public DbConfig(Properties properties) {
-        this.url = properties.getProperty("db.url");
-        this.name = properties.getProperty("db.name");
-        this.username = properties.getProperty("db.username");
-        this.password = properties.getProperty("db.password");
+    public DbConfig(MyProperties properties) {
+        this.url = properties.getString("db.url");
+        this.name = properties.getString("db.name");
+        this.username = properties.getString("db.username");
+        this.password = properties.getString("db.password");
     }
 }

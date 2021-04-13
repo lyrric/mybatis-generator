@@ -1,15 +1,13 @@
-package com.github.lyrric.util;
+package com.github.lyrric.generator.util;
 
-import com.github.lyrric.entity.Clazz;
-import com.github.lyrric.entity.Column;
-import com.github.lyrric.entity.Field;
-import com.github.lyrric.entity.Table;
+import com.github.lyrric.generator.entity.Clazz;
+import com.github.lyrric.generator.entity.Column;
+import com.github.lyrric.generator.entity.Field;
+import com.github.lyrric.generator.entity.Table;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author wangxiaodong

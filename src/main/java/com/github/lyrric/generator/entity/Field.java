@@ -1,4 +1,4 @@
-package com.github.lyrric.entity;
+package com.github.lyrric.generator.entity;
 
 import lombok.Data;
 

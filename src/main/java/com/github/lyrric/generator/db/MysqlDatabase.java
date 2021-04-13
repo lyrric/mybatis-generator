@@ -1,10 +1,10 @@
-package com.github.lyrric.db;
+package com.github.lyrric.generator.db;
 
-import com.github.lyrric.entity.Column;
-import com.github.lyrric.entity.Table;
-import com.github.lyrric.entity.config.DbConfig;
-import com.github.lyrric.enums.Mysql2JavaType;
-import com.github.lyrric.exception.TableNotExistException;
+import com.github.lyrric.generator.entity.Column;
+import com.github.lyrric.generator.entity.Table;
+import com.github.lyrric.generator.entity.config.DbConfig;
+import com.github.lyrric.generator.enums.Mysql2JavaType;
+import com.github.lyrric.generator.exception.TableNotExistException;
 
 import java.sql.*;
 import java.util.ArrayList;

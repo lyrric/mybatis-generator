@@ -1,4 +1,4 @@
-package com.github.lyrric.enums;
+package com.github.lyrric.generator.enums;
 
 /**
  * @author wangxiaodong

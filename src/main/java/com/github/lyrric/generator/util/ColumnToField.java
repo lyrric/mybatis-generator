@@ -1,6 +1,6 @@
-package com.github.lyrric.util;
+package com.github.lyrric.generator.util;
 
-import com.github.lyrric.entity.Column;
+import com.github.lyrric.generator.entity.Column;
 
 /**
  * @author wangxiaodong

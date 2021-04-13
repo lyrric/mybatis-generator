@@ -1,9 +1,9 @@
-package com.github.lyrric.db;
+package com.github.lyrric.generator.db;
 
-import com.github.lyrric.entity.Column;
-import com.github.lyrric.entity.Table;
-import com.github.lyrric.entity.config.DbConfig;
-import com.github.lyrric.util.ColumnToField;
+import com.github.lyrric.generator.entity.Column;
+import com.github.lyrric.generator.entity.config.DbConfig;
+import com.github.lyrric.generator.entity.Table;
+import com.github.lyrric.generator.util.ColumnToField;
 
 import java.sql.SQLException;
 import java.util.List;

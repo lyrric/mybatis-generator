@@ -1,4 +1,4 @@
-package com.github.lyrric.exception;
+package com.github.lyrric.generator.exception;
 
 /**
  * @author wangxiaodong

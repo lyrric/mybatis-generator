@@ -1,13 +1,11 @@
-package com.github.lyrric.util;
+package com.github.lyrric.generator.util;
 
-import com.github.lyrric.entity.config.*;
-import com.github.lyrric.exception.MissArgumentException;
-import org.apache.commons.lang3.StringUtils;
+import com.github.lyrric.generator.entity.config.*;
 
-import javax.xml.crypto.Data;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Properties;
 
 /**
  * @author wangxiaodong
@@ -27,7 +25,7 @@ public class PropertiesUtil {
         properties = new MyProperties();
         InputStream is = PropertiesUtil.class.getClassLoader().getResourceAsStream("generator-default.properties");
         properties.load(is);
-        is = PropertiesUtil.class.getClassLoader().getResourceAsStream("generator.properties");
+        is = new FileInputStream(new File("src/main/resources/generator.properties"));
         properties.load(is);
     }
 

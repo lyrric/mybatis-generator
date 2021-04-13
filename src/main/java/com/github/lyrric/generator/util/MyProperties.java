@@ -1,6 +1,6 @@
-package com.github.lyrric.util;
+package com.github.lyrric.generator.util;
 
-import com.github.lyrric.exception.MissArgumentException;
+import com.github.lyrric.generator.exception.MissArgumentException;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Properties;

@@ -1,9 +1,7 @@
-package com.github.lyrric.entity.config;
+package com.github.lyrric.generator.entity.config;
 
-import com.github.lyrric.util.MyProperties;
+import com.github.lyrric.generator.util.MyProperties;
 import lombok.Data;
-
-import java.util.Properties;
 
 /**
  * @author wangxiaodong

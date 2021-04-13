@@ -1,8 +1,7 @@
 package com.github.lyrric.test;
 
 
-import com.github.lyrric.MyBatisGenerator;
-import com.github.lyrric.enums.Mysql2JavaType;
+import com.github.lyrric.generator.enums.Mysql2JavaType;
 import freemarker.template.TemplateException;
 import org.junit.jupiter.api.Test;
 
@@ -15,9 +14,8 @@ public class GeneratorTest {
 
     @Test
     public void test() throws IOException, SQLException, TemplateException {
-       new MyBatisGenerator().startGenerate();
-    }
 
+    }
 
 
     @Test

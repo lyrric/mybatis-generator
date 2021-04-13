@@ -37,6 +37,6 @@ public class Clazz {
     private List<String> dynamicImport;
 
     public String fieldNames(){
-        return fields.stream().map(Field::getColumnName).collect(Collectors.joining());
+        return fields.stream().map(Field::getColumnName).collect(Collectors.joining(","));
     }
 }

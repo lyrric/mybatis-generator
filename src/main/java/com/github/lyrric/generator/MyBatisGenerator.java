@@ -14,6 +14,7 @@ import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -82,53 +83,68 @@ public class MyBatisGenerator {
     private void generateEntity(Clazz clazz, Map<String, Object> data) throws IOException, TemplateException {
         BaseConfig baseConfig = propertiesUtil.getBaseConfig();
         Template temp = cfg.getTemplate(TemplateEnum.ENTITY.path);
-
+        String fileName = baseConfig.getEntityProject() + "/" + packageToPath(baseConfig.getEntityPackage()) +
+                "/" + clazz.getName() + ".java";
         FileWriter fileWriter =
-                new FileWriter(baseConfig.getEntityProject() + "/" + packageToPath(baseConfig.getEntityPackage()) +
-                        "/" + clazz.getName() + ".java");
+                new FileWriter(fileName);
         temp.process(data, fileWriter);
     }
     private void generateMapper(Clazz clazz, Map<String, Object> data) throws IOException, TemplateException {
         BaseConfig baseConfig = propertiesUtil.getBaseConfig();
         Template temp = cfg.getTemplate(TemplateEnum.MAPPER.path);
+        String fileName = baseConfig.getMapperProject() + "/" + packageToPath(baseConfig.getMapperPackage()) +
+                "/" + clazz.getName() + "Mapper.java";
         FileWriter fileWriter =
-                new FileWriter(baseConfig.getMapperProject() + "/" + packageToPath(baseConfig.getMapperPackage()) +
-                        "/" + clazz.getName() + "Mapper.java");
+                new FileWriter(checkFileExist(fileName));
         temp.process(data, fileWriter);
     }
     private void generateXml(Clazz clazz, Map<String, Object> data) throws IOException, TemplateException {
         BaseConfig baseConfig = propertiesUtil.getBaseConfig();
         Template temp = cfg.getTemplate(TemplateEnum.XML.path);
+        String fileName = baseConfig.getXmlProject() + "/" + packageToPath(baseConfig.getXmlPackage()) +
+                "/" + clazz.getName() + "Mapper.xml";
         FileWriter fileWriter =
-                new FileWriter(baseConfig.getXmlProject() + "/" + packageToPath(baseConfig.getXmlPackage()) +
-                        "/" + clazz.getName() + "Mapper.xml");
+                new FileWriter(checkFileExist(fileName));
         temp.process(data, fileWriter);
     }
 
     private void generateService(Clazz clazz, Map<String, Object> data) throws IOException, TemplateException {
         BaseConfig baseConfig = propertiesUtil.getBaseConfig();
         Template temp = cfg.getTemplate(TemplateEnum.SERVICE.path);
+        String fileName = baseConfig.getServiceProject() + "/" + packageToPath(baseConfig.getServicePackage()) +
+                "/" + clazz.getName() + "Service.java";
         FileWriter fileWriter =
-                new FileWriter(baseConfig.getServiceProject() + "/" + packageToPath(baseConfig.getServicePackage()) +
-                        "/" + clazz.getName() + "Service.java");
+                new FileWriter(checkFileExist(fileName));
         temp.process(data, fileWriter);
     }
 
     private void generateServiceImpl(Clazz clazz, Map<String, Object> data) throws IOException, TemplateException {
         BaseConfig baseConfig = propertiesUtil.getBaseConfig();
         Template temp = cfg.getTemplate(TemplateEnum.SERVICE_IMPL.path);
+        String fileName = baseConfig.getServiceImplProject() + "/"
+                + packageToPath(baseConfig.getServiceImplPackage()) +
+                "/" + clazz.getName() + "ServiceImpl.java";
         FileWriter fileWriter =
-                new FileWriter(baseConfig.getServiceImplProject() + "/"
-                        + packageToPath(baseConfig.getServiceImplPackage()) +
-                        "/" + clazz.getName() + "ServiceImpl.java");
+                new FileWriter(checkFileExist(fileName));
         temp.process(data, fileWriter);
     }
-
 
     private String packageToPath(String pack){
         return pack.replaceAll("\\.", "/");
     }
 
-
+    /**
+     * 文件是否存在
+     * @param fileName 存在则返回新的文件名
+     * @return
+     */
+    private String checkFileExist(String fileName){
+        File file = new File(fileName);
+        if(file.exists()){
+            //文件存在，生成副本
+            fileName = fileName + ".bak";
+        }
+        return fileName;
+    }
 
 }

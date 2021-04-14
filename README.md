@@ -17,19 +17,19 @@
 | generator.table | 是 | ---- |comm_user | 要生成的表名，多个表名以英文逗号“,”分隔 |
 | generator.entity.enable | 否 | true | true/false | 是否生成entity |
 | generator.entity.project | 否 | src/main/java | ---- | entity生成位置，默认是单模块应用 |
-| generator.entity.package | 否 | ---- | com.github.lyrric.entity | entity包名，当generator.entity.enable为true时，必须指定 |
+| generator.entity.package | 否 | ---- | com.github.lyrric.entity | entity包名，当<br/>generator.entity.enable<br/>为true时，必须指定 |
 | generator.mapper.enable | 否 | true | true/false | 是否生成mapper |
 | generator.mapper.project | 否 | src/main/java | ---- | mapper生成位置，默认是单模块应用 |
-| generator.mapper.package | 否 | ---- |com.github.lyrric.mapper | mapper包名，当generator.mapper.enable为true时，必须指定 |
+| generator.mapper.package | 否 | ---- |com.github.lyrric.mapper | mapper包名，当<br/>generator.mapper.enable<br/>为true时，必须指定 |
 | generator.xml.enable | 否 | true | true/false | 是否生成xml |
 | generator.xml.project | 否 | src/main/java | ---- | xml生成位置，默认是单模块应用 |
 | generator.xml.package | 否 | ---- | resources/mapper | xml生成路径 |
 | generator.service.enable | 否 | false | true/false | 是否生成service |
 | generator.service.project | 否 | src/main/java | ---- | service生成位置，默认是单模块应用 |
-| generator.service.package | 否 | ---- |com.github.lyrric.service | service包名，当generator.mapper.enable为true时，必须指定 |
+| generator.service.package | 否 | ---- |com.github.lyrric.service | service包名，当<br/>generator.mapper.enable<br/>为true时，必须指定 |
 | generator.serviceImpl.enable | 否 | false | true/false | 是否生成serviceImpl |
 | generator.serviceImpl.project | 否 | src/main/java | ---- | serviceImpl生成位置，默认是单模块应用 |
-| generator.serviceImpl.package | 否 | ---- |com.github.lyrric.service.impl |serviceImpl包名，当generator.serviceImpl.enable为true时，必须指定 |
+| generator.serviceImpl.package | 否 | ---- |com.github.lyrric.service.impl |serviceImpl包名，当<br/>generator.serviceImpl.enable<br/>为true时，必须指定 |
 | generator.swagger.enable | 否 | true | true/false | entity是否生成swagger注解 |
 | generator.lombok.enable | 否 | true | true/false | entity是否支持lombok |
 | generator.lombok.data | 否 | true | true/false | entity是否生成&#64;Data注解 |

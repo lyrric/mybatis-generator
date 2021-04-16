@@ -14,7 +14,7 @@ import java.io.InputStream;
  */
 public class PropertiesUtil {
 
-    private BaseConfig baseConfig;
+    private GeneratorConfig generatorConfig;
     private DbConfig dbConfig;
     private LombokConfig lombokConfig;
     private MybatisPlusConfig mybatisPlusConfig;
@@ -29,19 +29,19 @@ public class PropertiesUtil {
         properties.load(is);
     }
 
-    public BaseConfig getBaseConfig() {
-        if(baseConfig == null){
-            baseConfig = new BaseConfig(properties);
-        }
-        return baseConfig;
+    public GeneratorConfig getBaseConfig() {
+//        if(generatorConfig == null){
+//            generatorConfig = new GeneratorConfig();
+//        }
+        return null;
     }
 
-    public DbConfig getDbConfig() {
+   /* public DbConfig getDbConfig() {
         if(dbConfig == null){
             dbConfig = new DbConfig(properties);
         }
         return dbConfig;
-    }
+    }*/
 
     public LombokConfig getLombokConfig() {
         if(lombokConfig == null){

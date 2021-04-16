@@ -5,6 +5,7 @@ import com.github.lyrric.generator.db.MysqlDatabase;
 import com.github.lyrric.generator.entity.Clazz;
 import com.github.lyrric.generator.entity.Table;
 import com.github.lyrric.generator.entity.config.BaseConfig;
+import com.github.lyrric.generator.entity.config.GeneratorConfig;
 import com.github.lyrric.generator.enums.TemplateEnum;
 import com.github.lyrric.generator.util.PropertiesUtil;
 import com.github.lyrric.generator.util.TableToClassUtil;
@@ -46,23 +47,24 @@ public class MyBatisGenerator {
     }
 
     public void generate() throws IOException, SQLException, TemplateException {
-        AbstractDatabase database = new MysqlDatabase(propertiesUtil.getDbConfig(), propertiesUtil.getBaseConfig().getTable());
+        /*AbstractDatabase database = new MysqlDatabase(propertiesUtil.getDbConfig(), propertiesUtil.getBaseConfig().getTable());
         database.connect();
         List<Table> tables = database.getTables();
         List<Clazz> clazzList = new TableToClassUtil(tables, database).getClazzList();
-        startGenerate(clazzList);
+        startGenerate(clazzList);*/
     }
 
     private void startGenerate(List<Clazz> clazzList) throws IOException, TemplateException {
         for (Clazz clazz : clazzList) {
-            BaseConfig baseConfig = propertiesUtil.getBaseConfig();
+            //GeneratorConfig generatorConfig = propertiesUtil.getBaseConfig();
             Map<String, Object> root = new HashMap<>();
             root.put("clazz", clazz);
-            root.put("generator", baseConfig);
-            root.put("lombok", propertiesUtil.getLombokConfig());
-            root.put("mybatisPlus", propertiesUtil.getMybatisPlusConfig());
-            root.put("swagger", propertiesUtil.getSwaggerConfig());
-            if(baseConfig.isEntityEnable()){
+//            root.put("generator", baseConfig);
+//            root.put("lombok", propertiesUtil.getLombokConfig());
+//            root.put("mybatisPlus", propertiesUtil.getMybatisPlusConfig());
+//            root.put("swagger", propertiesUtil.getSwaggerConfig());
+
+          /*  if(baseConfig.isEntityEnable()){
                 generateEntity(clazz, root);
             }
             if(baseConfig.isMapperEnable()){
@@ -76,11 +78,11 @@ public class MyBatisGenerator {
             }
             if(baseConfig.isServiceImplEnable()){
                 generateServiceImpl(clazz, root);
-            }
+            }*/
         }
     }
 
-    private void generateEntity(Clazz clazz, Map<String, Object> data) throws IOException, TemplateException {
+   /* private void generateEntity(Clazz clazz, Map<String, Object> data) throws IOException, TemplateException {
         BaseConfig baseConfig = propertiesUtil.getBaseConfig();
         Template temp = cfg.getTemplate(TemplateEnum.ENTITY.path);
         String fileName = baseConfig.getEntityProject() + "/" + packageToPath(baseConfig.getEntityPackage()) +
@@ -128,7 +130,7 @@ public class MyBatisGenerator {
                 new FileWriter(checkFileExist(fileName));
         temp.process(data, fileWriter);
     }
-
+*/
     private String packageToPath(String pack){
         return pack.replaceAll("\\.", "/");
     }

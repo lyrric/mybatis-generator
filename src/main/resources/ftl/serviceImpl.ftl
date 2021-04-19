@@ -1,7 +1,7 @@
-package ${generator.serviceImplPackage};
+package ${serviceImpl.packages};
 
-import ${generator.servicePackage}.${clazz.name}Service;
-import ${generator.mapperPackage}.${clazz.name}Mapper;
+import ${service.packages}.${clazz.name}Service;
+import ${mapper.packages}.${clazz.name}Mapper;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 

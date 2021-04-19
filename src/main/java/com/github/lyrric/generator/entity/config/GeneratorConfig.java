@@ -1,8 +1,10 @@
 package com.github.lyrric.generator.entity.config;
 
+import com.github.lyrric.generator.exception.MissArgumentException;
 import com.github.lyrric.generator.util.MyConfigMap;
 import com.github.lyrric.generator.util.MyProperties;
 import lombok.Data;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author wangxiaodong
@@ -35,10 +37,18 @@ public class GeneratorConfig {
         this.author = config.getString("author");
         this.swagger = config.getBool("swagger");
         this.mybatisPlus = config.getBool("mybatisPlus");
-        entity = new BaseConfig(config.get("entity"));
-        mapper = new BaseConfig(config.get("mapper"));
-        xml = new BaseConfig(config.get("xml"));
-        service = new BaseConfig(config.get("service"));
-        serviceImpl = new BaseConfig(config.get("serviceImpl"));
+        check();
+        lombok = new LombokConfig("lombok", config.get("lombok"));
+        entity = new BaseConfig("entity", config.get("entity"));
+        mapper = new BaseConfig("mapper", config.get("mapper"));
+        xml = new BaseConfig("xml", config.get("xml"));
+        service = new BaseConfig("service", config.get("service"));
+        serviceImpl = new BaseConfig("serviceImpl", config.get("serviceImpl"));
+    }
+
+    private void check(){
+        if(StringUtils.isEmpty(table)){
+            throw new MissArgumentException("generator.table");
+        }
     }
 }

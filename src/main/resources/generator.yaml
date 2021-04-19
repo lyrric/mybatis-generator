@@ -1,3 +1,0 @@
-#swagger
-generator:
-  table: comm_admin #要生成的表名，多个表名以,逗号分隔

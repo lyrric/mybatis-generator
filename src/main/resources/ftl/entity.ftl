@@ -1,10 +1,10 @@
-package ${generator.entityPackage};
+package ${entity.packages};
 
-<#if mybatisPlus.enable>
+<#if mybatisPlus>
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 </#if>
-<#if swagger.enable>
+<#if swagger>
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 </#if>
@@ -44,20 +44,20 @@ import ${di};
 @Builder;
     </#if>
 </#if>
-<#if swagger.enable>
+<#if swagger>
 @ApiModel("${clazz.comment}")
 </#if>
 public class ${clazz.name} {
 <#list clazz.fields as field>
 
-    <#if swagger.enable>
+    <#if swagger>
     @ApiModelProperty(name = "${field.name}" , value = "${field.comment}")
     <#else>
     /**
     * ${field.comment}
     */
     </#if>
-    <#if mybatisPlus.enable && field.primaryKey>
+    <#if mybatisPlus && field.primaryKey>
     @TableId(value = "${field.name}", type = IdType.AUTO)
     </#if>
 	private ${field.javaType} ${field.name};

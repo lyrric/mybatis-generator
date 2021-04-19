@@ -1,10 +1,10 @@
-package ${generator.mapperPackage};
+package ${mapper.packages};
 
-<#if mybatisPlus.enable>
+<#if mybatisPlus>
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 </#if>
 import org.apache.ibatis.annotations.Mapper;
-import ${generator.entityPackage}.${clazz.name};
+import ${entity.packages}.${clazz.name};
 
 /**
 * @author mybatis-generator

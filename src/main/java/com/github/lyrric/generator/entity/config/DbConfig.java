@@ -36,14 +36,12 @@ public class DbConfig {
         if(StringUtils.isBlank(url)){
             throw new MissArgumentException("db.url");
         }
+        System.out.println(url);
         if(StringUtils.isBlank(name)){
             throw new MissArgumentException("db.name");
         }
         if(StringUtils.isBlank(username)){
             throw new MissArgumentException("db.username");
-        }
-        if(StringUtils.isBlank(password)){
-            throw new MissArgumentException("db.password");
         }
     }
 

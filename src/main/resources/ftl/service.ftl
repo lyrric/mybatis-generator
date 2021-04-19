@@ -1,4 +1,4 @@
-package ${generator.servicePackage};
+package ${service.packages};
 
 /**
 * @author mybatis-generator

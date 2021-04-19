@@ -15,13 +15,13 @@ public class MyConfigMap {
     /**
      * 自定义的配置
      */
-    private final Map<String, Object> customMap;
+    private final Map<String, ?> customMap;
     /**
      * 默认配置
      */
-    private final Map<String, Object> defaultMap;
+    private final Map<String, ?> defaultMap;
 
-    public MyConfigMap(Map<String, Object> customMap, Map<String, Object> defaultMap) {
+    public MyConfigMap(Map<String, ?> customMap, Map<String, ?> defaultMap) {
         this.customMap = customMap;
         this.defaultMap = defaultMap;
     }
@@ -40,13 +40,19 @@ public class MyConfigMap {
     }
 
     public Integer getInt(String key){
-        String str = getString(key);
-        return Integer.parseInt(str);
+        Integer value = (Integer)customMap.get(key);
+        if(value == null){
+            return (Integer)defaultMap.get(key);
+        }
+        return value;
     }
 
     public Boolean getBool(String key){
-        String str = getString(key);
-        return Boolean.parseBoolean(str);
+        Boolean value = (Boolean)customMap.get(key);
+        if(value == null){
+            value = (Boolean) defaultMap.get(key);
+        }
+        return value != null && value;
     }
 
     @SuppressWarnings("all")

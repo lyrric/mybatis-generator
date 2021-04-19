@@ -7,13 +7,8 @@ package com.github.lyrric.generator.exception;
  */
 public class TableNotExistException extends RuntimeException{
 
-    private String database;
-
-    private String tableName;
-
     public TableNotExistException(String database, String tableName) {
-        super("could not found " + tableName + " in database " + database);
-        this.database = database;
-        this.tableName = tableName;
+        super("could not found: " + tableName + " in database :" + database);
+
     }
 }

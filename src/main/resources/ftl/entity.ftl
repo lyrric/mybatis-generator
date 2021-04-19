@@ -10,16 +10,16 @@ import io.swagger.annotations.ApiModelProperty;
 </#if>
 <#if lombok.enable>
     <#if lombok.data>
-import lombok.Data;
+import lombok.Data
     </#if>
     <#if lombok.noArgsConstructor>
-import lombok.AllArgsConstructor;
+import lombok.AllArgsConstructor
     </#if>
     <#if lombok.allArgsConstructor>
-import lombok.NoArgsConstructor;
+import lombok.NoArgsConstructor
     </#if>
     <#if lombok.builder>
-import lombok.Builder;
+import lombok.Builder
     </#if>
 </#if>
 <#list clazz.dynamicImport as di>

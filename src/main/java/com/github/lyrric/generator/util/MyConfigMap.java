@@ -39,22 +39,35 @@ public class MyConfigMap {
         return value;
     }
 
+    public String getFromCustom(String key){
+        String value;
+        if(customMap.containsKey(key)){
+            value = (String) customMap.get(key);
+        }else{
+            value =  (String)defaultMap.get(key);
+        }
+        return value;
+    }
+
     public Integer getInt(String key){
-        Integer value = (Integer)customMap.get(key);
-        if(value == null){
-            return (Integer)defaultMap.get(key);
+        Integer value;
+        if(customMap.containsKey(key)){
+            value = (Integer) customMap.get(key);
+        }else{
+            value =  (Integer)defaultMap.get(key);
         }
         return value;
     }
 
     public Boolean getBool(String key){
-        Boolean value = (Boolean)customMap.get(key);
-        if(value == null){
-            value = (Boolean) defaultMap.get(key);
+        Boolean value;
+        if(customMap.containsKey(key)){
+            value = (Boolean) customMap.get(key);
+        }else{
+            value =  (Boolean)defaultMap.get(key);
         }
-        return value != null && value;
+        return value;
     }
-
     @SuppressWarnings("all")
     public MyConfigMap get(String key){
         Map<String, Object> customMap = (Map<String, Object>)this.customMap.get(key);

@@ -1,25 +1,25 @@
 package ${entity.packages};
 
-<#if mybatisPlus>
+<#if generator.mybatisPlus>
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 </#if>
-<#if swagger>
+<#if generator.swagger>
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 </#if>
 <#if lombok.enable>
     <#if lombok.data>
-import lombok.Data
+import lombok.Data;
     </#if>
     <#if lombok.noArgsConstructor>
-import lombok.AllArgsConstructor
+import lombok.AllArgsConstructor;
     </#if>
     <#if lombok.allArgsConstructor>
-import lombok.NoArgsConstructor
+import lombok.NoArgsConstructor;
     </#if>
     <#if lombok.builder>
-import lombok.Builder
+import lombok.Builder;
     </#if>
 </#if>
 <#list clazz.dynamicImport as di>
@@ -28,36 +28,38 @@ import ${di};
 
 /**
 * ${clazz.comment}
-* @author mybatis-generator
+<#if generator.author?? >
+* @author ${generator.author}
+</#if>
 */
 <#if lombok.enable>
     <#if lombok.data>
 @Data
     </#if>
     <#if lombok.noArgsConstructor>
-@AllArgsConstructor;
+@AllArgsConstructor
     </#if>
     <#if lombok.allArgsConstructor>
-@NoArgsConstructor;
+@NoArgsConstructor
     </#if>
     <#if lombok.builder>
-@Builder;
+@Builder
     </#if>
 </#if>
-<#if swagger>
+<#if generator.swagger>
 @ApiModel("${clazz.comment}")
 </#if>
 public class ${clazz.name} {
 <#list clazz.fields as field>
 
-    <#if swagger>
+    <#if generator.swagger>
     @ApiModelProperty(name = "${field.name}" , value = "${field.comment}")
     <#else>
     /**
     * ${field.comment}
     */
     </#if>
-    <#if mybatisPlus && field.primaryKey>
+    <#if generator.mybatisPlus && field.primaryKey>
     @TableId(value = "${field.name}", type = IdType.AUTO)
     </#if>
 	private ${field.javaType} ${field.name};

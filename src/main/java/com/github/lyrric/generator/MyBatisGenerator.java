@@ -37,9 +37,10 @@ public class MyBatisGenerator {
 
     GeneratorConfig generatorConfig;
 
-    public MyBatisGenerator() throws IOException {
+    public MyBatisGenerator(DbConfig dbConfig, GeneratorConfig generatorConfig) throws IOException {
+        this.dbConfig = dbConfig;
+        this.generatorConfig = generatorConfig;
         init();
-        initConfig();
     }
 
     private void init(){
@@ -48,21 +49,6 @@ public class MyBatisGenerator {
         cfg.setDefaultEncoding("UTF-8");
         cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
 
-    }
-
-    @SuppressWarnings("all")
-    private void initConfig() throws IOException {
-        File file = new File("src/main/resources/generator.yaml");
-        try(FileInputStream cusIs = new FileInputStream(file);
-            InputStream defaultIs = getClass().getClassLoader().getResourceAsStream("generator-default.yaml")){
-            Yaml yaml = new Yaml();
-            Iterable<Object> cusObj = yaml.loadAll(cusIs);
-            Map<String, ?> customMap = (Map<String, ?>)cusObj.iterator().next();
-            Iterable<Object> defaultObj = yaml.loadAll(defaultIs);
-            Map<String, ?> defaultMap = (Map<String, ?>)defaultObj.iterator().next();
-            dbConfig = new DbConfig(new MyConfigMap((Map)customMap.get("db"), (Map)defaultMap.get("db")));
-            generatorConfig = new GeneratorConfig(new MyConfigMap((Map)customMap.get("generator"), (Map)defaultMap.get("generator")));
-        }
     }
 
 
@@ -85,8 +71,6 @@ public class MyBatisGenerator {
             root.put("xml", generatorConfig.getXml());
             root.put("service", generatorConfig.getService());
             root.put("serviceImpl", generatorConfig.getServiceImpl());
-            root.put("mybatisPlus", generatorConfig.getMybatisPlus());
-            root.put("swagger", generatorConfig.getSwagger());
 
             generateEntity(clazz, root, generatorConfig.getEntity());
             generateMapper(clazz, root, generatorConfig.getMapper());

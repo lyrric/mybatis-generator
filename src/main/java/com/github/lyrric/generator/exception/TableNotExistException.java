@@ -9,6 +9,5 @@ public class TableNotExistException extends RuntimeException{
 
     public TableNotExistException(String database, String tableName) {
         super("could not found: " + tableName + " in database :" + database);
-
     }
 }

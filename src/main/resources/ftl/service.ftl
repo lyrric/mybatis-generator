@@ -1,7 +1,10 @@
 package ${service.packages};
 
 /**
-* @author mybatis-generator
+* ${clazz.comment}
+<#if generator.author?? >
+* @author ${generator.author}
+</#if>
 */
 public interface ${clazz.name}Service  {
 

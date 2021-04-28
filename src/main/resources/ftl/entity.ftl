@@ -25,6 +25,9 @@ import lombok.Builder;
 <#list clazz.dynamicImport as di>
 import ${di};
 </#list>
+<#list entity.dynamicImports as di>
+import ${di};
+</#list>
 
 /**
 * ${clazz.comment}
@@ -49,7 +52,11 @@ import ${di};
 <#if generator.swagger>
 @ApiModel("${clazz.comment}")
 </#if>
-public class ${clazz.name} {
+<#if entity.extendClass??>
+public class ${clazz.name} extends ${entity.extendClass}{
+<#else>
+public class ${clazz.name}{
+</#if>
 <#list clazz.fields as field>
 
     <#if generator.swagger>

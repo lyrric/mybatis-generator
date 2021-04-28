@@ -25,8 +25,8 @@ public class GeneratorConfig {
 
     private LombokConfig lombok;
 
-    private BaseConfig entity;
-    private BaseConfig mapper;
+    private EntityConfig entity;
+    private MapperConfig mapper;
     private BaseConfig xml;
     private BaseConfig service;
     private BaseConfig serviceImpl;
@@ -39,8 +39,8 @@ public class GeneratorConfig {
         this.mybatisPlus = config.getBool("mybatisPlus");
         check();
         lombok = new LombokConfig("lombok", config.get("lombok"));
-        entity = new BaseConfig("entity", config.get("entity"));
-        mapper = new BaseConfig("mapper", config.get("mapper"));
+        entity = new EntityConfig("entity", config.get("entity"));
+        mapper = new MapperConfig("mapper", config.get("mapper"));
         xml = new BaseConfig("xml", config.get("xml"));
         service = new BaseConfig("service", config.get("service"));
         serviceImpl = new BaseConfig("serviceImpl", config.get("serviceImpl"));

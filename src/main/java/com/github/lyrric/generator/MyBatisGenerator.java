@@ -4,9 +4,7 @@ import com.github.lyrric.generator.db.AbstractDatabase;
 import com.github.lyrric.generator.db.MysqlDatabase;
 import com.github.lyrric.generator.entity.Clazz;
 import com.github.lyrric.generator.entity.Table;
-import com.github.lyrric.generator.entity.config.BaseConfig;
-import com.github.lyrric.generator.entity.config.DbConfig;
-import com.github.lyrric.generator.entity.config.GeneratorConfig;
+import com.github.lyrric.generator.entity.config.*;
 import com.github.lyrric.generator.enums.TemplateEnum;
 import com.github.lyrric.generator.util.MyConfigMap;
 import com.github.lyrric.generator.util.TableToClassUtil;
@@ -16,10 +14,12 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
+import org.apache.commons.lang3.StringUtils;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.*;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,7 +53,7 @@ public class MyBatisGenerator {
 
 
     public void generate() throws IOException, SQLException, TemplateException {
-        AbstractDatabase database = new MysqlDatabase(dbConfig, generatorConfig.getTable());
+        AbstractDatabase database = new MysqlDatabase(dbConfig, generatorConfig.getTable(), generatorConfig.getEntity().getIgnoredColumns());
         database.connect();
         List<Table> tables = database.getTables();
         List<Clazz> clazzList = new TableToClassUtil(tables, database).getClazzList();
@@ -80,7 +80,7 @@ public class MyBatisGenerator {
         }
     }
 
-    private void generateEntity(Clazz clazz, Map<String, Object> data, BaseConfig entity) throws IOException, TemplateException {
+    private void generateEntity(Clazz clazz, Map<String, Object> data, EntityConfig entity) throws IOException, TemplateException {
         if(!entity.getEnable()){
             return ;
         }
@@ -91,9 +91,19 @@ public class MyBatisGenerator {
                 new FileWriter(fileName);
         temp.process(data, fileWriter);
     }
-    private void generateMapper(Clazz clazz, Map<String, Object> data, BaseConfig mapper) throws IOException, TemplateException {
+    private void generateMapper(Clazz clazz, Map<String, Object> data, MapperConfig mapper) throws IOException, TemplateException {
         if(!mapper.getEnable()){
             return ;
+        }
+        //处理extends泛型
+        if (StringUtils.isNotBlank(mapper.getExtendClass())) {
+            List<String> list = new ArrayList<>();
+            String extendClass = mapper.getExtendClass();
+            String[] split = extendClass.split(",");
+            for (String s : split) {
+                list.add(String.format("%s<%s>", s, clazz.getName()));
+            }
+            data.put("extendClass", String.join(", ", list));
         }
         Template temp = cfg.getTemplate(TemplateEnum.MAPPER.path);
         String fileName = mapper.getProject() + "/" + packageToPath(mapper.getPackages()) +

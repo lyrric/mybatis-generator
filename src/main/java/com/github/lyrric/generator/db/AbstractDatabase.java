@@ -1,8 +1,8 @@
 package com.github.lyrric.generator.db;
 
 import com.github.lyrric.generator.entity.Column;
-import com.github.lyrric.generator.entity.config.DbConfig;
 import com.github.lyrric.generator.entity.Table;
+import com.github.lyrric.generator.entity.config.DbConfig;
 import com.github.lyrric.generator.util.ColumnToField;
 
 import java.sql.SQLException;
@@ -16,11 +16,15 @@ import java.util.List;
 public abstract class AbstractDatabase implements ColumnToField {
 
     DbConfig dbConfig;
+
     String tableNames;
 
-    public AbstractDatabase(DbConfig dbConfig, String tableNames) {
+    List<String> ignoredColumns;
+
+    public AbstractDatabase(DbConfig dbConfig, String tableNames, List<String> ignoredColumns) {
         this.dbConfig = dbConfig;
         this.tableNames = tableNames;
+        this.ignoredColumns = ignoredColumns;
     }
 
     /**

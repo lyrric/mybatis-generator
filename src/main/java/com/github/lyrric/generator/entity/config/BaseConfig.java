@@ -14,9 +14,9 @@ import org.apache.commons.lang3.StringUtils;
 @Data
 public class BaseConfig {
 
-    private final String top = "generator";
+    protected final String top = "generator";
 
-    private final String type;
+    protected final String type;
     /** 是否生成 */
     private Boolean enable;
     /** 生成项目 */

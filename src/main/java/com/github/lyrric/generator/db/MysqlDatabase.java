@@ -20,8 +20,8 @@ public class MysqlDatabase extends AbstractDatabase{
 
     private Connection connection;
 
-    public MysqlDatabase(DbConfig dbConfig, String tableNames) {
-        super(dbConfig, tableNames);
+    public MysqlDatabase(DbConfig dbConfig, String tableNames,  List<String> ignoredColumns) {
+        super(dbConfig, tableNames, ignoredColumns);
     }
 
     @Override
@@ -82,8 +82,12 @@ public class MysqlDatabase extends AbstractDatabase{
             statement.execute(sql);
             try(ResultSet resultSet = statement.getResultSet()){
                 while (resultSet.next()){
+                    String columnName = resultSet.getString("COLUMN_NAME");
+                    if(ignoredColumns.contains(columnName)){
+                        continue;
+                    }
                     columns.add(Column.builder()
-                            .name(resultSet.getString("COLUMN_NAME"))
+                            .name(columnName)
                             .dbType(resultSet.getString("DATA_TYPE"))
                             .key(resultSet.getString("COLUMN_KEY"))
                             .comment(resultSet.getString("COLUMN_COMMENT"))

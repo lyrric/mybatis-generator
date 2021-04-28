@@ -6,7 +6,10 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
 /**
-* @author mybatis-generator
+* ${clazz.comment}
+<#if generator.author?? >
+* @author ${generator.author}
+</#if>
 */
 @Service
 public class ${clazz.name}ServiceImpl implements ${clazz.name}Service  {

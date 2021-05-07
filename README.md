@@ -1,42 +1,110 @@
-#### 必须指定的配置项
-| 配置项 | 示例| 描述|
-| :---: | :---: | :---: |
-| db.url |  jdbc&#58;mysql://127.0.0.1:3306/test?characterEncoding=utf8 | 数据库连接url |
-| db.username | ---- | 数据库用户名 |
-| db.password | ---- | 数据库密码 |
-| db.name | ---- | 要连接的数据库 |
-| generator.table | comm_user | 要生成的表名，多个表名以英文逗号“,”分隔 |
+#### 使用方法
+1.clone项目到本地，执行```mvn clean install -Dmaven.test.skip=true```  
+2.在另一个maven项目的pom中添加配置  
+```
+ <build>
+       <plugins>
+           <plugin>
+               <groupId>com.github.lyrric</groupId>
+               <artifactId>mybatis-generator-maven-plugin</artifactId>
+               <version>1.0-SNAPSHOT</version>
+               <dependencies>
+                   <dependency>
+                       <groupId>mysql</groupId>
+                       <artifactId>mysql-connector-java</artifactId>
+                       <version>8.0.18</version> <!-- 你的mysql版本 -->
+                   </dependency>
+               </dependencies>
+           </plugin>
+       </plugins>
+   </build>
+```
+3.在resources下面添加配置文件```generator.yaml```  
+```
+#数据库信息
+db:
+  url: jdbc:mysql://127.0.0.1:3306/test?useSSL=false&useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true
+  username: root
+  password: root
+  name: test #数据库名
 
+#swagger
+generator:
+  author: lyrric
+  table: comm_salary #要生成的表名，多个表名以,逗号分隔
+  #author: mybatis-generator #生成作者
+  swagger: true #实体类是否生成swagger注解，默认为true
+  mybatisPlus: true #是否支持mybatisPlus，默认为true
+  #lombok
+  lombok:
+    enable: true #是否支持lombok注解
+    data: true #是否生成@Data注解
+  entity:
+    enable: true #是否生成entity，默认为true
+    package: com.github.lyrric.entity #实体类路径，如果要生成entity则必须指定
+  mapper:
+    enable: true #是否生成mapper，默认为true
+    package: com.github.lyrric.mapper #mapper路径，如果要生成mapper则必须指定
+  xml:
+    enable: true #是否生成xml，默认为true
+    project: src/main #xml生成项目，默认为src/main/java
+    package: resources/mapper #xml生成位置，默认为resources/mapper
+  service:
+    enable: true #是否生成service，默认为false
+    package: com.github.lyrric.service #service路径，如果要生成service则必须指定
+  serviceImpl:
+    enable: true #是否生成serviceImpl，默认为false
+    package: com.github.lyrric.service.impl #serviceImpl路径，如果要生成serviceImpl则必须指定
+```
+4.点击idea-maven窗口的plugin下的mybatis-generator即可生成  
 #### 所有配置项
-| 配置项 | 必填 | 默认值 |示例| 描述|
-|  :---  | :---: |  :---:  | :---: | :---: |
-| db.url | 是 | ---- | ---- | 数据库连接url |
-| db.username | 是 | ---- |---- | 数据库用户名 |
-| db.password | 是 | ---- |---- | 数据库密码 |
-| db.name | 是 | ---- |---- | 要连接的数据库 |
-| generator.table | 是 | ---- |comm_user | 要生成的表名，多个表名以英文逗号“,”分隔 |
-| generator.entity.enable | 否 | true | true/false | 是否生成entity |
-| generator.entity.project | 否 | src/main/java | ---- | entity生成位置，默认是单模块应用 |
-| generator.entity.package | 否 | ---- | c.g.lyrric.entity | entity包名，如果要生成entity则必须指定 |
-| generator.mapper.enable | 否 | true | true/false | 是否生成mapper |
-| generator.mapper.project | 否 | src/main/java | ---- | mapper生成位置，默认是单模块应用 |
-| generator.mapper.package | 否 | ---- | c.g.lyrric.mapper | mapper包名，如果要生成mapper则必须指定 |
-| generator.xml.enable | 否 | true | true/false | 是否生成xml |
-| generator.xml.project | 否 | src/main/java | ---- | xml生成位置，默认是单模块应用 |
-| generator.xml.package | 否 | ---- | resources/mapper | xml生成路径 |
-| generator.service.enable | 否 | false | true/false | 是否生成service |
-| generator.service.project | 否 | src/main/java | ---- | service生成位置，默认是单模块应用 |
-| generator.service.package | 否 | ---- |c.g.lyrric.service | service包名，如果要生成service则必须指定 |
-| generator.serviceImpl.enable | 否 | false | true/false | 是否生成serviceImpl |
-| generator.serviceImpl.project | 否 | src/main/java | ---- | serviceImpl生成位置，默认是单模块应用 |
-| generator.serviceImpl.package | 否 | ---- |c.g.lyrric.service.impl | serviceImpl包名，如果要生成serviceImpl则必须指定 |
-| generator.swagger.enable | 否 | true | true/false | entity是否生成swagger注解 |
-| generator.lombok.enable | 否 | true | true/false | entity是否支持lombok |
-| generator.lombok.data | 否 | true | true/false | entity是否生成&#64;Data注解 |
-| generator.lombok.noArgsConstructor | 否 | false | true/false | entity是否生成&#64;NoArgsConstructor注解 |
-| generator.lombok.allArgsConstructor | 否 | false | true/false | entity是否生成&#64;AllArgsConstructor注解 |
-| generator.lombok.builder | 否 | false | true/false | entity是否生成&#64;Builder注解 |
+```
+#数据库信息
+db:
+  url: jdbc:mysql://127.0.0.1:3306/test?useSSL=false&useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true
+  username: root
+  password: root
+  name: test #数据库名
 
-
-
-
+#swagger
+generator:
+  table: user #要生成的表名，多个表名以,逗号分隔
+  author: mybatis-generator #生成作者
+  swagger: true #实体类是否生成swagger注解，默认为true
+  mybatisPlus: true #是否支持mybatisPlus，默认为true
+  #lombok
+  lombok:
+    enable: true #是否支持lombok注解
+    data: true #是否生成@Data注解
+    noArgsConstructor: false #是否生成@NoArgsConstructor注解
+    allArgsConstructor: false #是否生成@AllArgsConstructor注解
+    builder: false #是否生成@Builder注解
+  #entity
+  entity:
+    enable: true #是否生成entity，默认为true
+    extendClass: com.github.lyrric.entity.MyBaseEntity #父类，多个以逗号分隔，默认为空
+    ignoredColumns: id #忽略的字段，多个以逗号分隔
+    package: com.github.lyrric.entity #entity package，如果要生成entity则必须指定
+    project: src/main/java #entity生成项目，默认为src/main/java
+  #mapper
+  mapper:
+    enable: true #是否生成mapper，默认为true
+    extendClass: com.github.lyrric.entity.MyBaseMapper #父类，多个以逗号分隔，默认为空
+    package: com.github.lyrric.mapper #mapper package，如果要生成mapper则必须指定
+    project: src/main/java #mapper生成项目，默认为src/main/java
+  #xml
+  xml:
+    enable: true #是否生成xml，默认为true
+    project: src/main #xml生成项目，默认为src/main/java
+    package: resources/mapper #xml生成位置，默认为resources/mapper
+  #service
+  service:
+    enable: false #是否生成service，默认为false
+    package: com.github.lyrric.service #service package，如果要生成service则必须指定
+    project: src/main/java #service生成项目，默认为src/main/java
+  #serviceImpl
+  serviceImpl:
+    enable: false #是否生成serviceImpl，默认为false
+    package: com.github.lyrric.service.impl #serviceImpl package，如果要生成serviceImpl则必须指定
+    project: src/main/java #serviceImpl生成位置，默认为src/main/java
+```

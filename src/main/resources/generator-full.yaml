@@ -1,6 +1,6 @@
 #数据库信息
 db:
-  url: jdbc:mysql://127.0.0.1:3306/test?useSSL=false&serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true
+  url: jdbc:mysql://127.0.0.1:3306/test?useSSL=false&useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true
   username: root
   password: root
   name: test #数据库名
@@ -22,7 +22,7 @@ generator:
   entity:
     enable: true #是否生成entity，默认为true
     extendClass: com.github.lyrric.entity.MyBaseEntity #父类，多个以逗号分隔，默认为空
-    ignoredColumns:  #忽略的字段，多个以逗号分隔
+    ignoredColumns: id #忽略的字段，多个以逗号分隔
     package: com.github.lyrric.entity #entity package，如果要生成entity则必须指定
     project: src/main/java #entity生成项目，默认为src/main/java
   #mapper

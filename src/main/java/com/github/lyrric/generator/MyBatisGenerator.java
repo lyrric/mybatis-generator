@@ -6,18 +6,17 @@ import com.github.lyrric.generator.entity.Clazz;
 import com.github.lyrric.generator.entity.Table;
 import com.github.lyrric.generator.entity.config.*;
 import com.github.lyrric.generator.enums.TemplateEnum;
-import com.github.lyrric.generator.util.MyConfigMap;
 import com.github.lyrric.generator.util.TableToClassUtil;
-import com.sun.corba.se.impl.orbutil.ObjectStreamClassUtil_1_3;
 import freemarker.cache.ClassTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
 import org.apache.commons.lang3.StringUtils;
-import org.yaml.snakeyaml.Yaml;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -88,7 +87,7 @@ public class MyBatisGenerator {
         String fileName = entity.getProject() + "/" + packageToPath(entity.getPackages()) +
                 "/" + clazz.getName() + ".java";
         FileWriter fileWriter =
-                new FileWriter(fileName);
+                new FileWriter(checkFileExist(fileName));
         temp.process(data, fileWriter);
     }
     private void generateMapper(Clazz clazz, Map<String, Object> data, MapperConfig mapper) throws IOException, TemplateException {
@@ -163,6 +162,9 @@ public class MyBatisGenerator {
         if(file.exists()){
             //文件存在，生成副本
             fileName = fileName + ".bak";
+        }else{
+            //创建目录
+            file.getParentFile().mkdirs();
         }
         return fileName;
     }

@@ -32,11 +32,13 @@ public class MyConfigMap {
      * @return
      */
     public String getString(String key){
-        String value = (String)customMap.get(key);
-        if(StringUtils.isBlank(value)){
-            return (String)defaultMap.get(key);
+        Object object = customMap.get(key);
+        if(object != null){
+            return object.toString();
+        }else{
+            object = defaultMap.get(key);
+            return object == null ? null : object.toString();
         }
-        return value;
     }
 
     public String getFromCustom(String key){

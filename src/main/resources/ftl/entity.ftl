@@ -11,6 +11,8 @@ import io.swagger.annotations.ApiModelProperty;
 <#if lombok.enable>
     <#if lombok.data>
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Accessors;
     </#if>
     <#if lombok.noArgsConstructor>
 import lombok.AllArgsConstructor;
@@ -22,10 +24,7 @@ import lombok.NoArgsConstructor;
 import lombok.Builder;
     </#if>
 </#if>
-<#list clazz.dynamicImport as di>
-import ${di};
-</#list>
-<#list entity.dynamicImports as di>
+<#list dynamicImports as di>
 import ${di};
 </#list>
 
@@ -38,6 +37,8 @@ import ${di};
 <#if lombok.enable>
     <#if lombok.data>
 @Data
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
     </#if>
     <#if lombok.noArgsConstructor>
 @AllArgsConstructor
@@ -52,8 +53,8 @@ import ${di};
 <#if generator.swagger>
 @ApiModel("${clazz.comment}")
 </#if>
-<#if entity.extendClass??>
-public class ${clazz.name} extends ${entity.extendClass}{
+<#if extendClassStr??>
+public class ${clazz.name} extends ${extendClassStr}{
 <#else>
 public class ${clazz.name}{
 </#if>

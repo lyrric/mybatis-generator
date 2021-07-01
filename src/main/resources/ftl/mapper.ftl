@@ -1,11 +1,7 @@
 package ${mapper.packages};
 
-<#if generator.mybatisPlus>
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-</#if>
 import org.apache.ibatis.annotations.Mapper;
-import ${entity.packages}.${clazz.name};
-<#list mapper.dynamicImports as di>
+<#list dynamicImports as di>
 import ${di};
 </#list>
 
@@ -16,10 +12,10 @@ import ${di};
 </#if>
 */
 @Mapper
-<#if extendClass??>
-public interface ${clazz.name}Mapper extends ${extendClass}{
+<#if extendClassStr??>
+public interface ${clazz.name}Mapper extends ${extendClassStr}{
 <#else>
-public interface ${clazz.name}Mapper extends BaseMapper<${clazz.name}> {
+public interface ${clazz.name}Mapper{
 </#if>
 
 }

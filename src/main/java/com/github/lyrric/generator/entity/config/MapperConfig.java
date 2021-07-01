@@ -26,32 +26,13 @@ public class MapperConfig{
     /** package */
     private final String packages;
     /** 接口 */
-    private String extendClass;
-
-    /** 需要动态引入的类，解析implementClass得出 */
-    private final List<String> dynamicImports = new ArrayList<>();
+    private final String extendClass;
 
     public MapperConfig(String type, MyConfigMap configMap) {
         this.type = type;
         this.enable = configMap.getBool("enable");
         this.project = configMap.getString("project");
         this.packages = configMap.getString("package");
-        dealExtendClass(configMap.getString("extendClass"));
-    }
-
-    /**
-     * 处理依赖
-     */
-    private void dealExtendClass(String extendClass){
-        if(StringUtils.isNotBlank(extendClass)){
-            List<String> classNames = new ArrayList<>();
-            String[] classList = extendClass.split(",");
-            for (String clazz : classList) {
-                String[] split = clazz.split("\\.");
-                dynamicImports.add(clazz);
-                classNames.add(split[split.length-1]);
-            }
-            this.extendClass = String.join(".", classNames);
-        }
+        this.extendClass = configMap.getString("extendClass");
     }
 }

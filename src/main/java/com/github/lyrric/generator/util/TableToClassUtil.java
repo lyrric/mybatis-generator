@@ -7,7 +7,9 @@ import com.github.lyrric.generator.entity.Table;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author wangxiaodong
@@ -34,7 +36,7 @@ public class TableToClassUtil {
             clazz.setComment(table.getComment());
             clazz.setName(tableNameToClassName(table.getName()));
             //需要动态import的行
-            List<String> dynamicImport = new ArrayList<>();
+            Set<String> dynamicImport = new HashSet<>();
             clazz.setDynamicImport(dynamicImport);
             //字段
             List<Field> fields = new ArrayList<>();
@@ -51,7 +53,7 @@ public class TableToClassUtil {
                 Class<?> fieldClass = columnToField.convert(column);
                 // like java.util.Date
                 String canonicalName = fieldClass.getCanonicalName();
-                if(!canonicalName.startsWith("java.lang") && !dynamicImport.contains(canonicalName)){
+                if(!canonicalName.startsWith("java.lang")){
                     //如果不是基础封装数据，需要引入对应的包
                     dynamicImport.add(canonicalName);
                 }

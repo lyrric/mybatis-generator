@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -34,7 +35,7 @@ public class Clazz {
     /**
      * 动态引入的包
      */
-    private List<String> dynamicImport;
+    private Set<String> dynamicImport;
 
     public String fieldNames(){
         return fields.stream().map(Field::getColumnName).collect(Collectors.joining(","));

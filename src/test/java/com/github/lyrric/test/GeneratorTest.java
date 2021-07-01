@@ -28,7 +28,7 @@ public class GeneratorTest {
 
     }
 
-    @Test
+    //@Test
     public void testInitConfig() throws IOException {
         File file = new File("src/test/resources/generator.yaml");
         try(FileInputStream cusIs = new FileInputStream(file);

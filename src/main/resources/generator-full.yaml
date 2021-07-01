@@ -21,14 +21,14 @@ generator:
   #entity
   entity:
     enable: true #是否生成entity，默认为true
-    extendClass: com.github.lyrric.entity.MyBaseEntity #父类，多个以逗号分隔，默认为空
+    extendClass:  #父类，多个以逗号分隔，默认为空(支持泛型，格式为com.BaseEntity<T>)
     ignoredColumns: id #忽略的字段，多个以逗号分隔
     package: com.github.lyrric.entity #entity package，如果要生成entity则必须指定
     project: src/main/java #entity生成项目，默认为src/main/java
   #mapper
   mapper:
     enable: true #是否生成mapper，默认为true
-    extendClass: com.github.lyrric.entity.MyBaseMapper #父类，多个以逗号分隔，默认为空
+    extendClass: #父类，多个以逗号分隔，默认为空(支持泛型，格式为com.BaseMapper<T>)
     package: com.github.lyrric.mapper #mapper package，如果要生成mapper则必须指定
     project: src/main/java #mapper生成项目，默认为src/main/java
   #xml

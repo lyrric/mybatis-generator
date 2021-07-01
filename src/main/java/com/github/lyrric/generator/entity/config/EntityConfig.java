@@ -26,11 +26,8 @@ public class EntityConfig{
     private final String project;
     /** package */
     private final String packages;
-
-    /** 需要动态引入的类，解析extendClass得出 */
-    private final List<String> dynamicImports = new ArrayList<>();
     /** 基类 */
-    private String extendClass;
+    private final String extendClass;
     /** 忽略字段 */
     private List<String> ignoredColumns = new ArrayList<>();
 
@@ -39,28 +36,12 @@ public class EntityConfig{
         this.enable = config.getBool("enable");
         this.project = config.getString("project");
         this.packages = config.getString("package");
+        this.extendClass = config.getString("extendClass");
         String ignoredColumns = config.getString("ignoredColumns");
         if (StringUtils.isNotBlank(ignoredColumns)) {
             this.ignoredColumns = Arrays.asList(ignoredColumns.split(","));
         }
-        dealExtendClass(config.getString("extendClass"));
         check();
-    }
-
-    /**
-     * 处理依赖
-     */
-    private void dealExtendClass(String superClass){
-        if(StringUtils.isNotBlank(superClass)){
-            List<String> classNames = new ArrayList<>();
-            String[] classList = superClass.split(",");
-            for (String clazz : classList) {
-                String[] split = clazz.split("\\.");
-                dynamicImports.add(clazz);
-                classNames.add(split[split.length-1]);
-            }
-            this.extendClass = String.join(".", classNames);
-        }
     }
 
     private void check(){

@@ -1,14 +1,14 @@
 package ${serviceImpl.packages};
 
-import ${service.packages}.${clazz.name}Service;
-import ${mapper.packages}.${clazz.name}Mapper;
+import ${servicePackage}.${clazz.name}Service;
+import ${mapperPackage}.${clazz.name}Mapper;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
 /**
 * ${clazz.comment}
-<#if generator.author?? >
-* @author ${generator.author}
+<#if author?? >
+* @author ${author}
 </#if>
 */
 @Service

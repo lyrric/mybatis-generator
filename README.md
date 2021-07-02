@@ -6,7 +6,7 @@
            <plugin>
                <groupId>com.github.lyrric</groupId>
                <artifactId>mybatis-generator-maven-plugin</artifactId>
-               <version>1.0.0</version>
+               <version>1.0.1</version>
                <dependencies>
                    <dependency>
                        <groupId>mysql</groupId>

@@ -37,9 +37,7 @@ public abstract class BaseGenerator {
     /**
      * 处理extendClassStr
      * @param configExtendClassStr 用户配置的extendClass
-     * @param fullGenericsClazzName 泛型名称(全局限定名)
-     * @return
-     */
+     * @param fullGenericsClazzName 泛型名称(全局限定名)     */
     protected void convertExtendClassStr(String configExtendClassStr, String fullGenericsClazzName){
         if(StringUtils.isNotBlank(configExtendClassStr)){
             List<String> classNames = new ArrayList<>();
@@ -69,7 +67,7 @@ public abstract class BaseGenerator {
     /**
      * 获取简单类名
      * @param fullClassName 全局限定名
-     * @return
+     * @return 简单类名
      */
     protected String getClassSimpleName(String fullClassName){
         fullClassName = fullClassName.trim();
@@ -99,7 +97,7 @@ public abstract class BaseGenerator {
     /**
      * 文件是否存在
      * @param fileName 存在则返回新的文件名
-     * @return
+     * @return 存在则返回新的文件名
      */
     protected String checkFileExist(String fileName){
         File file = new File(fileName);

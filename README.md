@@ -1,6 +1,5 @@
-#### 使用方法
-1.clone项目到本地，执行```mvn clean install -Dmaven.test.skip=true```  
-2.在另一个maven项目的pom中添加配置  
+#### 使用方法 
+1.在maven项目的pom中添加配置  
 ```
  <build>
        <plugins>
@@ -19,7 +18,7 @@
        </plugins>
    </build>
 ```
-3.在resources下面添加配置文件```generator.yaml```  
+2.在resources下面添加配置文件```generator.yaml```  
 ```
 #数据库信息
 db:

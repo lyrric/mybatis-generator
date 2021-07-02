@@ -28,8 +28,8 @@ public class MyConfigMap {
 
     /**
      * 获取指定key的value
-     * @param key
-     * @return
+     * @param key key
+     * @return value value
      */
     public String getString(String key){
         Object object = customMap.get(key);

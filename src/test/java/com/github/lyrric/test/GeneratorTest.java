@@ -4,15 +4,16 @@ package com.github.lyrric.test;
 import com.github.lyrric.generator.MyBatisGenerator;
 import com.github.lyrric.generator.entity.config.DbConfig;
 import com.github.lyrric.generator.entity.config.GeneratorConfig;
-import com.github.lyrric.generator.enums.Mysql2JavaType;
 import com.github.lyrric.generator.util.MyConfigMap;
 import freemarker.template.TemplateException;
-import org.junit.jupiter.api.Test;
 import org.yaml.snakeyaml.Yaml;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.Map;
 
 public class GeneratorTest {
 
@@ -21,7 +22,7 @@ public class GeneratorTest {
     private GeneratorConfig generatorConfig;
 
 
-    @Test
+    //@Test
     public void testGenerate() throws IOException, SQLException, TemplateException {
         testInitConfig();
         new MyBatisGenerator(dbConfig, generatorConfig).generate();

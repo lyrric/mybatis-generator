@@ -11,7 +11,7 @@ public interface ColumnToField {
 
     /**
      * 类型转换
-     * @param column
+     * @param column 列
      * @return
      */
     Class<?> convert(Column column);

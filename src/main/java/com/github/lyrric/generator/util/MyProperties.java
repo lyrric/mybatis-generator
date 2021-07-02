@@ -31,8 +31,8 @@ public class MyProperties extends Properties {
 
     /**
      * 获取boolean类型数据
-     * @param key
-     * @return
+     * @param key key
+     * @return value
      */
     public boolean getBoolean(String key){
         return Boolean.parseBoolean(getString(key));

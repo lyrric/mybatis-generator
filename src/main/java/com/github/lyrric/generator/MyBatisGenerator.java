@@ -4,24 +4,17 @@ import com.github.lyrric.generator.db.AbstractDatabase;
 import com.github.lyrric.generator.db.MysqlDatabase;
 import com.github.lyrric.generator.entity.Clazz;
 import com.github.lyrric.generator.entity.Table;
-import com.github.lyrric.generator.entity.config.*;
-import com.github.lyrric.generator.enums.TemplateEnum;
+import com.github.lyrric.generator.entity.config.DbConfig;
+import com.github.lyrric.generator.entity.config.GeneratorConfig;
 import com.github.lyrric.generator.util.TableToClassUtil;
 import freemarker.cache.ClassTemplateLoader;
 import freemarker.template.Configuration;
-import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
-import org.apache.commons.lang3.StringUtils;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author wangxiaodong

@@ -1,12 +1,5 @@
-#数据库信息
-db:
-  url: jdbc:mysql://127.0.0.1:3306/test?useSSL=false&useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true
-  username: root
-  password: root
-
 #swagger
 generator:
-  table: #要生成的表名，多个表名以,逗号分隔
   author: mybatis-generator #生成作者
   swagger: true #实体类是否生成swagger注解，默认为true
   mybatisPlus: true #是否支持mybatisPlus，默认为true
@@ -20,15 +13,10 @@ generator:
   #entity
   entity:
     enable: true #是否生成entity，默认为true
-    extendClass: #父类，多个以逗号分隔，默认为空，支持泛型，com.Model<T>，T会被替换成当前类名
-    ignoredColumns:  #忽略的字段，多个以逗号分隔
-    package: #entity package，如果要生成entity则必须指定
     project: src/main/java #entity生成项目，默认为src/main/java
   #mapper
   mapper:
     enable: true #是否生成mapper，默认为true
-    extendClass: #父类，多个以逗号分隔，默认为空(支持泛型，格式为com.BaseMapper<T>)
-    package: #mapper package，如果要生成mapper则必须指定
     project: src/main/java #mapper生成项目，默认为src/main/java
   #xml
   xml:
@@ -38,12 +26,10 @@ generator:
   #service
   service:
     enable: false #是否生成service，默认为false
-    package: #service package，如果要生成service则必须指定
     project: src/main/java #service生成项目，默认为src/main/java
   #serviceImpl
   serviceImpl:
     enable: false #是否生成serviceImpl，默认为false
-    package: #serviceImpl package，如果要生成serviceImpl则必须指定
     project: src/main/java #serviceImpl生成位置，默认为src/main/java
 
 

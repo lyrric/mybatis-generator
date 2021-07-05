@@ -1,4 +1,6 @@
-#### 使用方法 
+#### 更新日志
+- 2021.07.05 v1.0.2 修改maven运行命令
+#### 快速开始
 1.在maven项目的pom中添加配置  
 ```
  <build>
@@ -6,7 +8,7 @@
            <plugin>
                <groupId>com.github.lyrric</groupId>
                <artifactId>mybatis-generator-maven-plugin</artifactId>
-               <version>1.0.1</version>
+               <version>1.0.2</version>
                <dependencies>
                    <dependency>
                        <groupId>mysql</groupId>
@@ -29,23 +31,13 @@ db:
 
 #swagger
 generator:
-  author: lyrric
   table: comm_salary #要生成的表名，多个表名以,逗号分隔
-  #author: mybatis-generator #生成作者
-  swagger: true #实体类是否生成swagger注解，默认为true
-  mybatisPlus: true #是否支持mybatisPlus，默认为true
-  #lombok
-  lombok:
-    enable: true #是否支持lombok注解
-    data: true #是否生成@Data注解
   entity:
-    enable: true #是否生成entity，默认为true
-    package: com.github.lyrric.entity #实体类路径，如果要生成entity则必须指定
+    package: com.github.lyrric.entity #实体类路径
   mapper:
     enable: true #是否生成mapper，默认为true
-    package: com.github.lyrric.mapper #mapper路径，如果要生成mapper则必须指定
+    package: com.github.lyrric.mapper #mapper路径
   xml:
-    enable: true #是否生成xml，默认为true
     project: src/main #xml生成项目，默认为src/main/java
     package: resources/mapper #xml生成位置，默认为resources/mapper
   service:
@@ -55,7 +47,7 @@ generator:
     enable: true #是否生成serviceImpl，默认为false
     package: com.github.lyrric.service.impl #serviceImpl路径，如果要生成serviceImpl则必须指定
 ```
-4.点击idea-maven窗口的plugin下的mybatis-generator即可生成  
+4.运行命令: ```mvn mybatis-generator:generate```
 #### 所有配置项
 ```
 #数据库信息

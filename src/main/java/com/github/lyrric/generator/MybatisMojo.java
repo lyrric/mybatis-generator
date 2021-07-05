@@ -20,7 +20,7 @@ import java.util.Map;
  * @version 1.0
  * @date 2021/4/13 16:02
  */
-@Mojo(name = "mybatis-generate")
+@Mojo(name = "generate")
 public class MybatisMojo extends AbstractMojo {
 
     private DbConfig dbConfig;

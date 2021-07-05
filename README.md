@@ -1,4 +1,8 @@
 #### 更新日志
+- 2021.07.05 v1.0.3版本
+  - 1.删除了配置项db.name，改为从db.url中解析数据库名称  
+  - 2.加入新特性ignoreTablePrefix，忽略table前缀（如果表名有此前缀，生成的文件会去掉其前缀）  
+  - 3.修改了生成mapper时，继承mybatisPlus的BaseMapper没有泛型问题  
 - 2021.07.05 v1.0.2 修改maven运行命令
 #### 快速开始
 1.在maven项目的pom中添加配置  
@@ -8,7 +12,7 @@
            <plugin>
                <groupId>com.github.lyrric</groupId>
                <artifactId>mybatis-generator-maven-plugin</artifactId>
-               <version>1.0.2</version>
+               <version>1.0.3</version>
                <dependencies>
                    <dependency>
                        <groupId>mysql</groupId>
@@ -27,7 +31,6 @@ db:
   url: jdbc:mysql://127.0.0.1:3306/test?useSSL=false&useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true
   username: root
   password: root
-  name: test #数据库名
 
 #swagger
 generator:
@@ -55,7 +58,6 @@ db:
   url: jdbc:mysql://127.0.0.1:3306/test?useSSL=false&useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true
   username: root
   password: root
-  name: test #数据库名
 
 #swagger
 generator:
@@ -63,6 +65,7 @@ generator:
   author: mybatis-generator #生成作者
   swagger: true #实体类是否生成swagger注解，默认为true
   mybatisPlus: true #是否支持mybatisPlus，默认为true
+  ignoreTablePrefix: #忽略table前缀（如果表名有此前缀，生成的文件名会去掉其前缀）
   #lombok
   lombok:
     enable: true #是否支持lombok注解
@@ -73,7 +76,7 @@ generator:
   #entity
   entity:
     enable: true #是否生成entity，默认为true
-    extendClass: #父类，多个以逗号分隔，默认为空(支持泛型，格式为com.BaseEntity<T>)
+    extendClass:  #父类，多个以逗号分隔，默认为空(支持泛型，格式为com.BaseEntity<T>)
     ignoredColumns: id #忽略的字段，多个以逗号分隔
     package: com.github.lyrric.entity #entity package，如果要生成entity则必须指定
     project: src/main/java #entity生成项目，默认为src/main/java

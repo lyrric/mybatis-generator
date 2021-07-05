@@ -6,7 +6,7 @@
 
     <groupId>io.github.lyrric</groupId>
     <artifactId>mybatis-generator-maven-plugin</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <packaging>maven-plugin</packaging>
     <name>${project.groupId}:${project.artifactId}</name>
     <url>https://github.com/lyrric/mybatis-generator</url>
@@ -56,6 +56,12 @@
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
             <version>1.28</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.18</version> <!-- 你的mysql版本 -->
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

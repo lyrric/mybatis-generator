@@ -44,7 +44,8 @@ public class MyBatisGenerator {
     }
 
     public void generate() throws IOException, SQLException, TemplateException {
-        AbstractDatabase database = new MysqlDatabase(dbConfig, generatorConfig.getTable(), generatorConfig.getEntity().getIgnoredColumns());
+        AbstractDatabase database = new MysqlDatabase(dbConfig, generatorConfig.getTable(),
+                generatorConfig.getEntity().getIgnoredColumns(),generatorConfig.getIgnoreTablePrefix());
         database.connect();
         List<Table> tables = database.getTables();
         List<Clazz> clazzList = new TableToClassUtil(tables, database).getClazzList();

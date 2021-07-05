@@ -21,10 +21,13 @@ public abstract class AbstractDatabase implements ColumnToField {
 
     List<String> ignoredColumns;
 
-    public AbstractDatabase(DbConfig dbConfig, String tableNames, List<String> ignoredColumns) {
+    String ignoreTablePrefix;
+
+    public AbstractDatabase(DbConfig dbConfig, String tableNames, List<String> ignoredColumns, String ignoreTablePrefix) {
         this.dbConfig = dbConfig;
         this.tableNames = tableNames;
         this.ignoredColumns = ignoredColumns;
+        this.ignoreTablePrefix = ignoreTablePrefix == null ? null : ignoreTablePrefix.trim();
     }
 
     /**

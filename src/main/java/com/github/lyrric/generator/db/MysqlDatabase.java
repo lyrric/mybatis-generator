@@ -5,6 +5,7 @@ import com.github.lyrric.generator.entity.Table;
 import com.github.lyrric.generator.entity.config.DbConfig;
 import com.github.lyrric.generator.enums.Mysql2JavaType;
 import com.github.lyrric.generator.exception.TableNotExistException;
+import org.apache.commons.lang3.StringUtils;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -22,8 +23,8 @@ public class MysqlDatabase extends AbstractDatabase{
     private String databaseName;
     private Connection connection;
 
-    public MysqlDatabase(DbConfig dbConfig, String tableNames,  List<String> ignoredColumns) {
-        super(dbConfig, tableNames, ignoredColumns);
+    public MysqlDatabase(DbConfig dbConfig, String tableNames,  List<String> ignoredColumns, String ignoreTablePrefix) {
+        super(dbConfig, tableNames, ignoredColumns, ignoreTablePrefix);
     }
 
     @Override
@@ -44,6 +45,10 @@ public class MysqlDatabase extends AbstractDatabase{
         for (String tableName : tableNames) {
             String tableComment = getTableComment(tableName);
             List<Column> columns = getTableColumns(tableName);
+            //去除表前缀
+            if(StringUtils.isNotBlank(ignoreTablePrefix) && tableName.contains(ignoreTablePrefix)){
+                tableName = tableName.substring(ignoreTablePrefix.length());
+            }
             Table table = new Table(tableName, tableComment, columns);
             tables.add(table);
         }

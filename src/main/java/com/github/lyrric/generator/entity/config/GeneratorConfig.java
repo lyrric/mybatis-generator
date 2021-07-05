@@ -23,6 +23,9 @@ public class GeneratorConfig {
     /** 是否支持mybatisPlus，默认为true */
     private Boolean mybatisPlus;
 
+    /** 忽略table前缀（如果表名有此前缀，生成的文件会去掉其前缀） */
+    private String ignoreTablePrefix;
+
     private LombokConfig lombok;
 
     private EntityConfig entity;
@@ -37,6 +40,7 @@ public class GeneratorConfig {
         this.author = config.getString("author");
         this.swagger = config.getBool("swagger");
         this.mybatisPlus = config.getBool("mybatisPlus");
+        this.ignoreTablePrefix = config.getString("ignoreTablePrefix");
         check();
         lombok = new LombokConfig("lombok", config.get("lombok"));
         entity = new EntityConfig("entity", config.get("entity"));

@@ -30,7 +30,7 @@ public class MapperGenerator extends BaseGenerator{
 
     private final GeneratorConfig generatorConfig;
 
-    private final String MYBATIS_PLUS_MAPPER = "com.baomidou.mybatisplus.core.mapper.BaseMapper";
+    private final String MYBATIS_PLUS_MAPPER = "com.baomidou.mybatisplus.core.mapper.BaseMapper<T>";
 
     public MapperGenerator(Clazz clazz, GeneratorConfig generatorConfig, Configuration cfg) {
         super(cfg);

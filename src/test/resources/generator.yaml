@@ -6,10 +6,11 @@ db:
 
 #swagger
 generator:
-  table: hotel_message #要生成的表名，多个表名以,逗号分隔
+  table: t_hotel_message #要生成的表名，多个表名以,逗号分隔
   author: mybatis-generator #生成作者
   swagger: true #实体类是否生成swagger注解，默认为true
   mybatisPlus: true #是否支持mybatisPlus，默认为true
+  ignoreTablePrefix: t_
   #lombok
   lombok:
     enable: true #是否支持lombok注解

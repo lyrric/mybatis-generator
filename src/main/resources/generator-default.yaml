@@ -3,7 +3,6 @@ db:
   url: jdbc:mysql://127.0.0.1:3306/test?useSSL=false&useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true
   username: root
   password: root
-  name: #数据库名
 
 #swagger
 generator:

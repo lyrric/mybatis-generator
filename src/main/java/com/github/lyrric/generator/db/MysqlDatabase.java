@@ -18,6 +18,8 @@ import java.util.List;
  */
 public class MysqlDatabase extends AbstractDatabase{
 
+
+    private String databaseName;
     private Connection connection;
 
     public MysqlDatabase(DbConfig dbConfig, String tableNames,  List<String> ignoredColumns) {
@@ -51,18 +53,21 @@ public class MysqlDatabase extends AbstractDatabase{
     @Override
     public void connect() throws SQLException {
         this.connection = DriverManager.getConnection(dbConfig.getUrl(), dbConfig.getUsername(), dbConfig.getPassword());
+        this.databaseName = connection.getCatalog();
     }
 
     @Override
     protected String getTableComment(String tableName) {
         try (Statement statement = connection.createStatement()){
-            String sql = String.format("select table_comment from information_schema.`TABLES` where TABLE_SCHEMA = '%s' and table_name = '%s'", dbConfig.getName(), tableName);
+            String sql = String.format(
+                    "select table_comment from information_schema.`TABLES` where TABLE_SCHEMA = '%s' and table_name = '%s'",
+                    databaseName, tableName);
             statement.execute(sql);
             try(ResultSet resultSet = statement.getResultSet()){
                 if(resultSet.next()){
                     return resultSet.getString(1);
                 }else{
-                    throw new TableNotExistException(dbConfig.getName(), tableName);
+                    throw new TableNotExistException(databaseName, tableName);
                 }
             }
         }catch (SQLException e){
@@ -77,7 +82,7 @@ public class MysqlDatabase extends AbstractDatabase{
         ArrayList<Column> columns = new ArrayList<>();
         String sql = String.format("SELECT COLUMN_NAME, DATA_TYPE, COLUMN_KEY, " +
                 "COLUMN_COMMENT FROM information_schema.`COLUMNS` " +
-                "WHERE TABLE_SCHEMA = '%s' AND table_name = '%s' order by ORDINAL_POSITION asc", dbConfig.getName(), tableName);
+                "WHERE TABLE_SCHEMA = '%s' AND table_name = '%s' order by ORDINAL_POSITION asc", databaseName, tableName);
         try (Statement statement = connection.createStatement()){
             statement.execute(sql);
             try(ResultSet resultSet = statement.getResultSet()){
@@ -103,7 +108,8 @@ public class MysqlDatabase extends AbstractDatabase{
     @Override
     List<String> getAllTableNames() {
         List<String> tableNames = new ArrayList<>();
-        String sql = String.format("select table_name from information_schema.`TABLES` where TABLE_SCHEMA = '%s' ", dbConfig.getName());
+        String sql = String.format("select table_name from information_schema.`TABLES` where TABLE_SCHEMA = '%s' ",
+                databaseName);
         try (Statement statement = connection.createStatement()){
             statement.execute(sql);
             try(ResultSet resultSet = statement.getResultSet()){

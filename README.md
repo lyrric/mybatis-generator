@@ -1,3 +1,7 @@
+#### 介绍
+mybatis-generator是一个maven插件，它可以一键生成entity、mapper、xml、service、serviceImpl，并支持lombok、swagger  
+生成的文件示例：[查看示例](https://github.com/lyrric/mybatis-generator/tree/main/example)
+
 #### 更新日志
 - 2021.07.05 v1.0.3版本
   - 1.删除了配置项db.name，改为从db.url中解析数据库名称  

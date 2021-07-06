@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.lyrric.mapper.HotelMessageMapper">
+
+	<resultMap id="BaseResultMap" type="com.github.lyrric.entity.HotelMessage">
+		<id column="id" property="id" />
+		<id column="room_name" property="roomName" />
+		<id column="title" property="title" />
+		<id column="read_flag" property="readFlag" />
+		<id column="status" property="status" />
+		<id column="detail_id" property="detailId" />
+		<id column="type" property="type" />
+		<id column="create_time" property="createTime" />
+		<id column="hotel_id" property="hotelId" />
+		<id column="room_id" property="roomId" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id,room_name,title,read_flag,status,detail_id,type,create_time,hotel_id,room_id
+	</sql>
+	
+</mapper>

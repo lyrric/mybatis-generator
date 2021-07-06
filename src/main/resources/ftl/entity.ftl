@@ -12,12 +12,12 @@ import io.swagger.annotations.ApiModelProperty;
     <#if lombok.data>
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Accessors;
-    </#if>
-    <#if lombok.noArgsConstructor>
-import lombok.AllArgsConstructor;
+import lombok.experimental.Accessors;
     </#if>
     <#if lombok.allArgsConstructor>
+import lombok.AllArgsConstructor;
+    </#if>
+    <#if lombok.noArgsConstructor>
 import lombok.NoArgsConstructor;
     </#if>
     <#if lombok.builder>

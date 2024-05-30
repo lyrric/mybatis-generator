@@ -101,7 +101,7 @@ public class MysqlDatabase extends AbstractDatabase{
                             .dbType(resultSet.getString("DATA_TYPE"))
                             .key(resultSet.getString("COLUMN_KEY"))
                             .comment(resultSet.getString("COLUMN_COMMENT"))
-                            .comment(resultSet.getString("EXTRA"))
+                            .extra(resultSet.getString("EXTRA"))
                             .build());
                 }
             }

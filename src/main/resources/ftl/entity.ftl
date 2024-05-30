@@ -67,8 +67,12 @@ public class ${clazz.name}{
     * ${field.comment}
     */
     </#if>
-    <#if generator.mybatisPlus && field.primaryKey>
-    @TableId(value = "${field.name}", type = IdType.AUTO)
+    <#if generator.mybatisPlus && field.primaryKey >
+    <#if field.autoIncrement>
+     @TableId(value = "${field.name}", type = IdType.AUTO)
+    <#else>
+     @TableId(value = "${field.name}", type = IdType.None)
+    </#if>
     </#if>
 	private ${field.javaType} ${field.name};
 </#list>

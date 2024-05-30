@@ -6,10 +6,7 @@ import com.github.lyrric.generator.entity.Field;
 import com.github.lyrric.generator.entity.Table;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author wangxiaodong
@@ -47,8 +44,8 @@ public class TableToClassUtil {
                 Field field = new Field();
                 field.setColumnName(column.getName());
                 field.setComment(column.getComment());
-                //判断主键的方式，可能不太完善
-                field.setPrimaryKey(StringUtils.isNoneEmpty(column.getKey()));
+                field.setPrimaryKey(Objects.equals(column.getKey(),"PRI"));
+                field.setAutoIncrement(column.getExtra() != null && column.getExtra().contains("auto_increment"));
                 field.setName(columnNameToFieldName(column.getName()));
                 Class<?> fieldClass = columnToField.convert(column);
                 // like java.util.Date

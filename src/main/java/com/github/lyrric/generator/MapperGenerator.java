@@ -46,7 +46,7 @@ public class MapperGenerator extends BaseGenerator{
         }
         String fileName = mapperConfig.getProject() + "/" + packageToPath(mapperConfig.getPackages()) +
                 "/" + clazz.getName() + "Mapper.java";
-        String fullGenericsClazzName = mapperConfig.getPackages() + "." + clazz.getName();
+        String fullGenericsClazzName = generatorConfig.getEntity().getPackages() + "." + clazz.getName();
         //当指定了extendClass，又同时支持mybabtis-plus，优先支持自定义的extendClass
         if(StringUtils.isNotBlank(mapperConfig.getExtendClass())){
             //处理自定义extends
@@ -55,7 +55,6 @@ public class MapperGenerator extends BaseGenerator{
             //处理mybabtis-plus支持
             convertExtendClassStr(MYBATIS_PLUS_MAPPER, fullGenericsClazzName);
         }
-
         Map<String ,Object> data = new HashMap<>(8);
         data.put("mapper", mapperConfig);
         data.put("generator", generatorConfig);

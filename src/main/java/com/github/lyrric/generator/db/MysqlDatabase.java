@@ -86,7 +86,7 @@ public class MysqlDatabase extends AbstractDatabase{
     List<Column> getTableColumns(String tableName) {
         ArrayList<Column> columns = new ArrayList<>();
         String sql = String.format("SELECT COLUMN_NAME, DATA_TYPE, COLUMN_KEY, " +
-                "COLUMN_COMMENT FROM information_schema.`COLUMNS` " +
+                "COLUMN_COMMENT,EXTRA FROM information_schema.`COLUMNS` " +
                 "WHERE TABLE_SCHEMA = '%s' AND table_name = '%s' order by ORDINAL_POSITION asc", databaseName, tableName);
         try (Statement statement = connection.createStatement()){
             statement.execute(sql);
@@ -101,6 +101,7 @@ public class MysqlDatabase extends AbstractDatabase{
                             .dbType(resultSet.getString("DATA_TYPE"))
                             .key(resultSet.getString("COLUMN_KEY"))
                             .comment(resultSet.getString("COLUMN_COMMENT"))
+                            .comment(resultSet.getString("EXTRA"))
                             .build());
                 }
             }

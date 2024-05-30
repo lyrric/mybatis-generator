@@ -30,5 +30,9 @@ public class Field {
      * 是否主键
      */
     private boolean primaryKey;
+    /**
+     * 是否自增
+     */
+    private boolean autoIncrement;
 
 }

@@ -24,6 +24,7 @@ public enum Mysql2JavaType{
     decimal("decimal", BigDecimal.class),
     float_("float", Float.class),
     double_("double", Double.class),
+    boolean_("bit", Boolean.class),
     ;
     private final String mysqlType;
 

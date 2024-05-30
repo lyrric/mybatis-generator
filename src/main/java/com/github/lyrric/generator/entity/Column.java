@@ -32,5 +32,9 @@ public class Column {
      * 字段注释
      */
     private String comment;
+    /**
+     * 额外信息
+     */
+    private String extra;
 
 }

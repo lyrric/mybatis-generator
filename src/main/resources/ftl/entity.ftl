@@ -12,7 +12,6 @@ import io.swagger.annotations.ApiModelProperty;
     <#if lombok.data>
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Accessors;
     </#if>
     <#if lombok.noArgsConstructor>
 import lombok.AllArgsConstructor;
@@ -38,7 +37,6 @@ import ${di};
     <#if lombok.data>
 @Data
 @EqualsAndHashCode(callSuper = false)
-@Accessors(chain = true)
     </#if>
     <#if lombok.noArgsConstructor>
 @AllArgsConstructor
@@ -71,7 +69,7 @@ public class ${clazz.name}{
     <#if field.autoIncrement>
      @TableId(value = "${field.name}", type = IdType.AUTO)
     <#else>
-     @TableId(value = "${field.name}", type = IdType.None)
+     @TableId(value = "${field.name}", type = IdType.NONE)
     </#if>
     </#if>
 	private ${field.javaType} ${field.name};
